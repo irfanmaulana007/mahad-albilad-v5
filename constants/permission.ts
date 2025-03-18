@@ -1,0 +1,47 @@
+import { Role } from '@prisma/client'
+
+export enum MODULE_PERMISSIONS_ENUM {
+  DASHBOARD = 'dashboard',
+  USERS = 'users',
+  ARTICLES = 'articles',
+}
+
+export const MODULE_PERMISSIONS = {
+  DASHBOARD: 'dashboard',
+  USERS: 'users',
+  ARTICLES: 'articles',
+}
+
+export const PERMISSIONS = {
+  VIEW_DASHBOARD: { key: 'view_dashboard', module: MODULE_PERMISSIONS.DASHBOARD },
+
+  VIEW_USERS: { key: 'view_users', module: MODULE_PERMISSIONS.USERS },
+  CREATE_USERS: { key: 'create_users', module: MODULE_PERMISSIONS.USERS },
+  UPDATE_USERS: { key: 'update_users', module: MODULE_PERMISSIONS.USERS },
+  DELETE_USERS: { key: 'delete_users', module: MODULE_PERMISSIONS.USERS },
+
+  VIEW_ARTICLES: { key: 'view_articles', module: MODULE_PERMISSIONS.ARTICLES },
+  CREATE_ARTICLES: { key: 'create_articles', module: MODULE_PERMISSIONS.ARTICLES },
+  UPDATE_ARTICLES: { key: 'update_articles', module: MODULE_PERMISSIONS.ARTICLES },
+  DELETE_ARTICLES: { key: 'delete_articles', module: MODULE_PERMISSIONS.ARTICLES },
+}
+
+export const ROLE_PERMISSIONS = {
+  [Role.ADMIN]: [
+    PERMISSIONS.VIEW_DASHBOARD,
+    PERMISSIONS.VIEW_USERS,
+    PERMISSIONS.CREATE_USERS,
+    PERMISSIONS.UPDATE_USERS,
+    PERMISSIONS.DELETE_USERS,
+    PERMISSIONS.VIEW_ARTICLES,
+    PERMISSIONS.CREATE_ARTICLES,
+    PERMISSIONS.UPDATE_ARTICLES,
+    PERMISSIONS.DELETE_ARTICLES,
+  ],
+  [Role.USER]: [
+    PERMISSIONS.VIEW_ARTICLES,
+    PERMISSIONS.CREATE_ARTICLES,
+    PERMISSIONS.UPDATE_ARTICLES,
+    PERMISSIONS.DELETE_ARTICLES,
+  ],
+}
